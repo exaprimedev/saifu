@@ -9,7 +9,7 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-    <input type="hidden" id="tehai" name="tehai">
+    <input type="hidden" id="hid_tehai" name="hid_tehai">
     <header>
         <nav class="navbar navbar-light fixed-top bg-light">
             <div class="input-group">
@@ -125,11 +125,31 @@
                 <img style="width:23px;height:auto;" src="imgs/z1.png">
             </li>
         </div>
-
-
-
-
         <!-- /container -->
+        <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">配牌確認</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <!-- /.modal-header -->
+                    <div class="modal-body" id="tehai_confirm_modal_body">
+                    </div>
+                    <!-- /.modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-primary" id="modal_close">クリア</button>
+                    </div>
+                    <!-- /.modal-footer -->
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
     </main>
 
     <!-- フッタ -->
@@ -206,8 +226,14 @@
         var arr_tehai = [];
 
         function selectPai(elm) {
-            if (arr_tehai.length < 13) {
+            var out = $("#tehai").html();
+            if (arr_tehai.length <= 13) {
                 arr_tehai.push(elm.id)
+                out += "";
+                if (arr_tehai.length == 13) {
+                    $("#tehai_confirm_modal_body").html($("#tehai").html());
+                    $("#tehai_confirm_modal").modal();
+                }
             }
             $("#tehai").val(arr_tehai.join());
             console.log(arr_tehai);
