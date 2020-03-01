@@ -8,90 +8,70 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> //cssファイルの設定など
 </head>
 
-<body class="d-flex flex-column h-100">
+<body style="font-size: small;">
     <input type="hidden" id="hid_tehai" name="hid_tehai">
-    <header>
-        <nav class="navbar navbar-light fixed-top bg-light">
-            <div class="card w-100">
-                <div class="card-header">
-                    <strong>
-                        <span id="bakaze">東</span>
-                        <span id="kyoku">1</span>局：
-                        <span id="honba">0</span>本場：
-                        <span id="oya">親</span>：ドラ：
-                    </strong>
-                    <img style="width:14px;height:auto;" src="imgs/p2.png">
-                </div>
-                <div class="card-body text-center">
-                    <div id="kawa" class="w-100" style="text-align: center;">
-                        <img style="width:23px;height:auto;" src="imgs/m1.png">
-                        <img style="width:23px;height:auto;" src="imgs/m2.png">
-                        <img style="width:23px;height:auto;" src="imgs/m3.png">
-                        <img style="width:23px;height:auto;" src="imgs/m4.png">
-                        <img style="width:23px;height:auto;" src="imgs/m4.png">
-                        <img style="width:23px;height:auto;" src="imgs/m4.png">
-                        <br>
-                        <img style="width:23px;height:auto;" src="imgs/p2.png">
-                        <img style="width:23px;height:auto;" src="imgs/p3.png">
-                        <img style="width:23px;height:auto;" src="imgs/s4.png">
-                        <img style="width:23px;height:auto;" src="imgs/s6.png">
-                        <img style="width:23px;height:auto;" src="imgs/z1.png">
-                        <img style="width:23px;height:auto;" src="imgs/z1.png">
-                        <br>
-                        <img style="width:23px;height:auto;" src="imgs/s6.png">
-                        <img style="width:23px;height:auto;" src="imgs/z1.png">
-                        <img style="width:32px;height:auto;" src="imgs/z1_h.png">
-                    </div>
-                </div>
-            </div>
-            <div id="tehai">
+    <div class="fixed-top">
+        <div class="card w-100">
+            <div class="card-header" style="padding:.3rem 1rem;">
+                <strong>
+                    <span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場：ドラ：<img style="width:14px;height:auto;" src="imgs/p2.png"><span id="oya">：親</span>：丸山まるこ
+                </strong>
 
             </div>
-        </nav>
-    </header>
-    <!-- ページコンテンツ -->
-    <main role="main" class="flex-shrink-0">
-        <div class="list-group overflow-hidden" style="max-height: 80px;" id="history">
-
+            <div class="card-body text-center">
+                <div id="kawa" class="w-100" style="text-align: left;">
+                </div>
+            </div>
         </div>
-        <!-- /container -->
-        <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">配牌確認</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+        <div id="tehai">
+        </div>
+        <div id="history">
+        </div>
+    </div>
+    <!-- ページコンテンツ -->
+
+    <!-- /container -->
+    <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">配牌確認</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                             <span aria-hidden="true">×</span>
                         </button>
-                    </div>
-                    <!-- /.modal-header -->
-                    <div class="modal-body" id="tehai_confirm_modal_body">
-                    </div>
-                    <!-- /.modal-body -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                        <button type="button" class="btn btn-secondaryprimary" id="modal_close">クリア</button>
-                    </div>
-                    <!-- /.modal-footer -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-header -->
+                <div class="modal-body" id="tehai_confirm_modal_body">
+                </div>
+                <!-- /.modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-secondaryprimary" id="modal_close">クリア</button>
+                </div>
+                <!-- /.modal-footer -->
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal -->
-    </main>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
 
     <!-- フッタ -->
-    <footer class="footer mt-auto py-3 bg-light">
-        <div id="inputpai_m" class="w-100" style="text-align: center;">
+    <div class="fixed-bottom">
+        <div class="card w-100">
+            <div class="text-center">
+                <div id="inputpai_m" class="w-100" style="text-align: center;">
+                </div>
+                <div id="inputpai_p" class="w-100" style="text-align: center;">
+                </div>
+                <div id="inputpai_s" class="w-100" style="text-align: center;">
+                </div>
+                <div id="inputpai_z" class="w-100" style="text-align: center;">
+                </div>
+            </div>
         </div>
-        <div id="inputpai_p" class="w-100" style="text-align: center;">
-        </div>
-        <div id="inputpai_s" class="w-100" style="text-align: center;">
-        </div>
-        <div id="inputpai_z" class="w-100" style="text-align: center;">
-        </div>
-    </footer>
+    </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -115,15 +95,15 @@
             var inputpai_s_out = "";
             var inputpai_z_out = "";
             for (var idx = 1; idx < 10; idx++) {
-                inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m' + idx + '" id="m' + idx + '" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m' + idx + '.png"></a>';
-                inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p' + idx + '" id="p' + idx + '" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p' + idx + '.png"></a>';
-                inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s' + idx + '" id="s' + idx + '" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s' + idx + '.png"></a>';
+                inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m' + idx + '" id="m' + idx + '" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m' + idx + '.png"></a>';
+                inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p' + idx + '" id="p' + idx + '" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p' + idx + '.png"></a>';
+                inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s' + idx + '" id="s' + idx + '" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s' + idx + '.png"></a>';
             }
-            inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m5r" id="m5r" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m5r.png"></a>';
-            inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p5r" id="p5r" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p5r.png"></a>';
-            inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s5r" id="s5r" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s5r.png"></a>';
+            inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m5r" id="m5r" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m5r.png"></a>';
+            inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p5r" id="p5r" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p5r.png"></a>';
+            inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s5r" id="s5r" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s5r.png"></a>';
             for (var idx = 1; idx < 8; idx++) {
-                inputpai_z_out += '<a href="#" data-toggle="tooltip" title="z' + idx + '" id="z' + idx + '" onclick="selectPai(this)"><img style="width:' + inputpai_w + 'px;height:auto;" src="imgs/z' + idx + '.png"></a>';
+                inputpai_z_out += '<a href="#" data-toggle="tooltip" title="z' + idx + '" id="z' + idx + '" onclick="selectPai(this)"><img id="img_z' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/z' + idx + '.png"></a>';
             }
             $("#inputpai_m").html(inputpai_m_out);
             $("#inputpai_p").html(inputpai_p_out);
@@ -133,19 +113,25 @@
         });
 
         function selectPai(elm) {
-            var out = $("#tehai").html();
+            var tehai = $("#tehai").html();
+            var kawa = $("#kawa").html();
+            var history = $("#history").html();
             if (arr_tehai.length <= 13) {
                 arr_tehai.push(elm.id)
-                out += elm.innerHTML.replace(inputpai_w, tehai_w);
-                $("#tehai").html(out);
+                tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                $("#tehai").html(tehai);
                 if (arr_tehai.length == 13) {
                     $("#tehai_confirm_modal_body").html($("#tehai").html());
                     $("#tehai_confirm_modal").modal();
                 }
             } else {
-                $("#tehai").val();
+                arr_tehai = $("#hid_tehai").val().split(',');
+                arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
+                $("#history").html($("#tehai").html() + "<br>" + history);
+                $("#img_" + elm.id).remove();
+                $("#kawa").html(kawa + elm.innerHTML.replace(inputpai_w, tehai_w));
             }
-            $("#tehai").val(arr_tehai.join());
+            $("#hid_tehai").val(arr_tehai.join());
             console.log(arr_tehai);
         }
     </script>
