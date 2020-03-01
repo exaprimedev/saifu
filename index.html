@@ -12,70 +12,45 @@
     <input type="hidden" id="hid_tehai" name="hid_tehai">
     <header>
         <nav class="navbar navbar-light fixed-top bg-light">
-            <div class="input-group">
-                <input type="text" id="keyword" class="form-control" aria-label="score" aria-describedby="button-addon4" readonly>
-                <input type="text" id="keyword" class="form-control" aria-label="score" aria-describedby="button-addon4">
-                <div class="input-group-append" id="button-addon4">
-                    <button class="btn btn-outline-secondary" type="button" onclick="selectPai(this)">＋</button>
+            <div class="card w-100">
+                <div class="card-header">
+                    <strong>
+                        <span id="bakaze">東</span>
+                        <span id="kyoku">1</span>局：
+                        <span id="honba">0</span>本場：
+                        <span id="oya">親</span>：ドラ：
+                    </strong>
+                    <img style="width:14px;height:auto;" src="imgs/p2.png">
                 </div>
-                <div class="input-group-append" id="button-addon4">
-                    <button class="btn btn-outline-secondary" type="button" onclick="selectPai(this)">△</button>
+                <div class="card-body text-center">
+                    <div id="kawa" class="w-100" style="text-align: center;">
+                        <img style="width:23px;height:auto;" src="imgs/m1.png">
+                        <img style="width:23px;height:auto;" src="imgs/m2.png">
+                        <img style="width:23px;height:auto;" src="imgs/m3.png">
+                        <img style="width:23px;height:auto;" src="imgs/m4.png">
+                        <img style="width:23px;height:auto;" src="imgs/m4.png">
+                        <img style="width:23px;height:auto;" src="imgs/m4.png">
+                        <br>
+                        <img style="width:23px;height:auto;" src="imgs/p2.png">
+                        <img style="width:23px;height:auto;" src="imgs/p3.png">
+                        <img style="width:23px;height:auto;" src="imgs/s4.png">
+                        <img style="width:23px;height:auto;" src="imgs/s6.png">
+                        <img style="width:23px;height:auto;" src="imgs/z1.png">
+                        <img style="width:23px;height:auto;" src="imgs/z1.png">
+                        <br>
+                        <img style="width:23px;height:auto;" src="imgs/s6.png">
+                        <img style="width:23px;height:auto;" src="imgs/z1.png">
+                        <img style="width:32px;height:auto;" src="imgs/z1_h.png">
+                    </div>
                 </div>
             </div>
+            <div id="tehai">
 
+            </div>
         </nav>
     </header>
     <!-- ページコンテンツ -->
     <main role="main" class="flex-shrink-0">
-        <div class="card" style="padding-top:30px;">
-            <div class="card-header">
-                <strong>
-                    <span id="bakaze">東</span>
-                    <span id="kyoku">1</span>局：
-                    <span id="honba">0</span>本場：
-                    <span id="oya">親</span>：ドラ表示：
-                </strong>
-                <img style="width:23px;height:auto;" src="imgs/p2.png">
-            </div>
-            <div class="card-body text-center">
-                <img style="width:23px;height:auto;" src="imgs/m1.png">
-                <img style="width:23px;height:auto;" src="imgs/m2.png">
-                <img style="width:23px;height:auto;" src="imgs/m3.png">
-                <img style="width:23px;height:auto;" src="imgs/m4.png">
-                <img style="width:23px;height:auto;" src="imgs/m4.png">
-                <img style="width:23px;height:auto;" src="imgs/m4.png">
-                <br>
-                <img style="width:23px;height:auto;" src="imgs/p2.png">
-                <img style="width:23px;height:auto;" src="imgs/p3.png">
-                <img style="width:23px;height:auto;" src="imgs/s4.png">
-                <img style="width:23px;height:auto;" src="imgs/s6.png">
-                <img style="width:23px;height:auto;" src="imgs/z1.png">
-                <img style="width:23px;height:auto;" src="imgs/z1.png">
-                <br>
-                <img style="width:23px;height:auto;" src="imgs/s6.png">
-                <img style="width:23px;height:auto;" src="imgs/z1.png">
-                <img style="width:32px;height:auto;" src="imgs/z1_h.png">
-            </div>
-        </div>
-        <div class="list-group" id="tehai">
-            <li class="list-group-item">
-                <img style="width:14px;height:auto;" src="imgs/m1.png">
-                <img style="width:14px;height:auto;" src="imgs/m2.png">
-                <img style="width:14px;height:auto;" src="imgs/m5r.png">
-                <img style="width:14px;height:auto;" src="imgs/p2.png">
-                <img style="width:14px;height:auto;" src="imgs/p5.png">
-                <img style="width:14px;height:auto;" src="imgs/p7.png">
-                <img style="width:14px;height:auto;" src="imgs/p8.png">
-                <img style="width:14px;height:auto;" src="imgs/s3.png">
-                <img style="width:14px;height:auto;" src="imgs/s4.png">
-                <img style="width:14px;height:auto;" src="imgs/s4.png">
-                <img style="width:14px;height:auto;" src="imgs/z5.png">
-                <img style="width:14px;height:auto;" src="imgs/z1.png">
-                <img style="width:14px;height:auto;" src="imgs/z1.png">
-                <img style="width:20px;height:auto;" src="imgs/z1_h.png">
-                <img style="width:14px;height:auto;" src="imgs/z1.png">
-            </li>
-        </div>
         <div class="list-group overflow-hidden" style="max-height: 80px;" id="history">
 
         </div>
@@ -94,8 +69,8 @@
                     </div>
                     <!-- /.modal-body -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                        <button type="button" class="btn btn-primary" id="modal_close">クリア</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-secondaryprimary" id="modal_close">クリア</button>
                     </div>
                     <!-- /.modal-footer -->
                 </div>
@@ -132,6 +107,8 @@
         $(function() {
             w = $(window).width();
             inputpai_w = w * 0.088;
+            tehai_w = w * 0.062;
+            tehai_w_h = w * 0.085;
             console.log(w + ":" + inputpai_w);
             var inputpai_m_out = "";
             var inputpai_p_out = "";
@@ -159,11 +136,14 @@
             var out = $("#tehai").html();
             if (arr_tehai.length <= 13) {
                 arr_tehai.push(elm.id)
-                out += "";
+                out += elm.innerHTML.replace(inputpai_w, tehai_w);
+                $("#tehai").html(out);
                 if (arr_tehai.length == 13) {
                     $("#tehai_confirm_modal_body").html($("#tehai").html());
                     $("#tehai_confirm_modal").modal();
                 }
+            } else {
+                $("#tehai").val();
             }
             $("#tehai").val(arr_tehai.join());
             console.log(arr_tehai);
