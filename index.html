@@ -45,8 +45,8 @@
                 </div>
                 <!-- /.modal-body -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                    <button type="button" class="btn btn-secondaryprimary" id="modal_close">クリア</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
+                    <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
                 </div>
                 <!-- /.modal-footer -->
             </div>
@@ -124,15 +124,37 @@
                     $("#tehai_confirm_modal_body").html($("#tehai").html());
                     $("#tehai_confirm_modal").modal();
                 }
+                $("#hid_tehai").val(arr_tehai.join());
             } else {
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
                 $("#history").html($("#tehai").html() + "<br>" + history);
-                $("#img_" + elm.id).remove();
+                $("#hid_tehai").val(arr_tehai.join());
+                $("#tehai").html(sortTehai());
+                //$("#img_" + elm.id).remove();
                 $("#kawa").html(kawa + elm.innerHTML.replace(inputpai_w, tehai_w));
             }
-            $("#hid_tehai").val(arr_tehai.join());
             console.log(arr_tehai);
+        }
+
+        function modalOK() {
+            $("#tehai_confirm_modal").modal('hide');
+            $("#tehai").html(sortTehai());
+        }
+
+        function modalClear() {
+            $("#tehai").html("");
+            $("#hid_tehai").val("");
+        }
+
+        function sortTehai() {
+            arr_tehai = $("#hid_tehai").val().split(',');
+            arr_tehai.sort();
+            var tehai = "";
+            for (var idx in arr_tehai) {
+                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png">';
+            }
+            return tehai.split(inputpai_w).join(tehai_w);
         }
     </script>
 </body>
