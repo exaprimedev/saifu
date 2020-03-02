@@ -86,7 +86,7 @@
         var arr_tehai = [];
         $(function() {
             w = $(window).width();
-            inputpai_w = w * 0.088;
+            inputpai_w = w * 0.099;
             tehai_w = w * 0.062;
             tehai_w_h = w * 0.085;
             console.log(w + ":" + inputpai_w);
@@ -95,15 +95,15 @@
             var inputpai_s_out = "";
             var inputpai_z_out = "";
             for (var idx = 1; idx < 10; idx++) {
-                inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m' + idx + '" id="m' + idx + '" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m' + idx + '.png"></a>';
-                inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p' + idx + '" id="p' + idx + '" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p' + idx + '.png"></a>';
-                inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s' + idx + '" id="s' + idx + '" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s' + idx + '.png"></a>';
+                inputpai_m_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="m' + idx + '" id="m' + idx + '" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m' + idx + '.png"></a></div>';
+                inputpai_p_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="p' + idx + '" id="p' + idx + '" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p' + idx + '.png"></a></div>';
+                inputpai_s_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="s' + idx + '" id="s' + idx + '" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s' + idx + '.png"></a></div>';
             }
-            inputpai_m_out += '<a href="#" data-toggle="tooltip" title="m5r" id="m5r" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m5r.png"></a>';
-            inputpai_p_out += '<a href="#" data-toggle="tooltip" title="p5r" id="p5r" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p5r.png"></a>';
-            inputpai_s_out += '<a href="#" data-toggle="tooltip" title="s5r" id="s5r" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s5r.png"></a>';
+            inputpai_m_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="m5r" id="m5r" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m5r.png"></a></div>';
+            inputpai_p_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="p5r" id="p5r" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p5r.png"></a></div>';
+            inputpai_s_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="s5r" id="s5r" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s5r.png"></a></div>';
             for (var idx = 1; idx < 8; idx++) {
-                inputpai_z_out += '<a href="#" data-toggle="tooltip" title="z' + idx + '" id="z' + idx + '" onclick="selectPai(this)"><img id="img_z' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/z' + idx + '.png"></a>';
+                inputpai_z_out += '<div style="float:left;"><a href="#" data-toggle="tooltip" title="z' + idx + '" id="z' + idx + '" onclick="selectPai(this)"><img id="img_z' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/z' + idx + '.png"></a></div>';
             }
             $("#inputpai_m").html(inputpai_m_out);
             $("#inputpai_p").html(inputpai_p_out);
