@@ -128,10 +128,10 @@
             } else {
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
+                $("#img_" + elm.id).css("padding-bottom", "10px");
                 $("#history").html($("#tehai").html() + "<br>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
                 $("#tehai").html(sortTehai());
-                //$("#img_" + elm.id).remove();
                 $("#kawa").html(kawa + elm.innerHTML.replace(inputpai_w, tehai_w));
             }
             console.log(arr_tehai);
@@ -145,6 +145,8 @@
         function modalClear() {
             $("#tehai").html("");
             $("#hid_tehai").val("");
+            arr_tehai = [];
+            $("#tehai_confirm_modal").modal('hide');
         }
 
         function sortTehai() {
