@@ -10,6 +10,7 @@
 
 <body style="font-size: small;">
     <input type="hidden" id="hid_tehai" name="hid_tehai">
+    <input type="hidden" id="hid_status" name="hid_status" value="haipai">
     <div class="fixed-top">
         <div class="card w-100">
             <div class="card-header" style="padding:.3rem 1rem;">
@@ -116,22 +117,38 @@
             var tehai = $("#tehai").html();
             var kawa = $("#kawa").html();
             var history = $("#history").html();
-            if (arr_tehai.length <= 13) {
-                arr_tehai.push(elm.id)
-                tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
-                $("#tehai").html(tehai);
-                if (arr_tehai.length == 13) {
-                    $("#tehai_confirm_modal_body").html($("#tehai").html());
-                    $("#tehai_confirm_modal").modal();
+            if ($("#hid_status").val() == "haipai") {
+                if (arr_tehai.length <= 13) {
+                    arr_tehai.push(elm.id)
+                    tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                    $("#tehai").html(tehai);
+                    if (arr_tehai.length == 13) {
+                        $("#tehai_confirm_modal_body").html($("#tehai").html());
+                        $("#tehai_confirm_modal").modal();
+                    }
+                    $("#hid_tehai").val(arr_tehai.join());
                 }
-                $("#hid_tehai").val(arr_tehai.join());
+            } else if ($("#hid_status").val() == "tsumo") {
+                if (checkNaki(elm.id)) {
+
+                } else {
+                    arr_tehai.push(elm.id);
+                    tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                    $("#tehai").html(tehai);
+                    $("#hid_status").val("kiri");
+                    $("#hid_tehai").val(arr_tehai.join());
+                }
             } else {
+                console.log($("#hid_tehai").val())
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
+                //$("#img_" + elm.id).css("padding-bottom", "9px");
                 $("#history").html($("#tehai").html() + "<br>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
+                console.log($("#hid_tehai").val())
                 $("#tehai").html(sortTehai());
                 $("#kawa").html(kawa + elm.innerHTML.replace(inputpai_w, tehai_w));
+                $("#hid_status").val("tsumo");
             }
             console.log(arr_tehai);
         }
@@ -139,6 +156,7 @@
         function modalOK() {
             $("#tehai_confirm_modal").modal('hide');
             $("#tehai").html(sortTehai());
+            $("#hid_status").val("tsumo");
         }
 
         function modalClear() {
@@ -156,6 +174,11 @@
                 tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png">';
             }
             return tehai.split(inputpai_w).join(tehai_w);
+        }
+
+        function checkNaki(pai) {
+            console.log(pai);
+            return false;
         }
     </script>
 </body>
