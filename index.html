@@ -11,6 +11,7 @@
 <body style="font-size: small;">
     <input type="hidden" id="hid_tehai" name="hid_tehai">
     <input type="hidden" id="hid_status" name="hid_status" value="haipai">
+    <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
     <div class="fixed-top">
         <div class="card w-100">
             <div class="card-header" style="padding:.3rem 1rem;">
@@ -117,6 +118,8 @@
             var tehai = $("#tehai").html();
             var kawa = $("#kawa").html();
             var history = $("#history").html();
+            var markKawa = '<figure style="display:inline-block;"><figcaption style="text-align:center;font-size:8px;">▼</figcaption>';
+            var markHistory = '<figure style="display:inline-block;"><figcaption style="text-align:center;font-size:8px;">▲</figcaption>';
             if ($("#hid_status").val() == "haipai") {
                 if (arr_tehai.length <= 13) {
                     arr_tehai.push(elm.id)
@@ -133,7 +136,11 @@
 
                 } else {
                     arr_tehai.push(elm.id);
+                    var jyunme = $("#hid_jyunme").val();
+                    $("#hid_jyunme").val(Number(jyunme) + 1);
+                    tehai += '<figure style="display:inline-block;"><figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;"></figcaption>';
                     tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                    tehai += '</figure>';
                     $("#tehai").html(tehai);
                     $("#hid_status").val("kiri");
                     $("#hid_tehai").val(arr_tehai.join());
@@ -142,12 +149,12 @@
                 console.log($("#hid_tehai").val())
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
-                //$("#img_" + elm.id).css("padding-bottom", "9px");
                 $("#history").html($("#tehai").html() + "<br>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
                 console.log($("#hid_tehai").val())
-                $("#tehai").html(sortTehai());
-                $("#kawa").html(kawa + elm.innerHTML.replace(inputpai_w, tehai_w));
+                $("#tehai").html(sortTehai(elm.id));
+                $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▲");
+                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, tehai_w) + '</figure>');
                 $("#hid_status").val("tsumo");
             }
             console.log(arr_tehai);
@@ -166,12 +173,14 @@
             $("#tehai_confirm_modal").modal('hide');
         }
 
-        function sortTehai() {
+        function sortTehai(pai) {
             arr_tehai = $("#hid_tehai").val().split(',');
             arr_tehai.sort();
             var tehai = "";
             for (var idx in arr_tehai) {
-                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png">';
+                tehai += '<figure style="display:inline-block;"><figcaption id="figc_' + $("#hid_jyunme").val() + "_" + arr_tehai[idx] + '" style="text-align:center;">';
+                tehai += '</figcaption>';
+                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png"></figure>';
             }
             return tehai.split(inputpai_w).join(tehai_w);
         }
