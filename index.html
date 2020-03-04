@@ -1,75 +1,95 @@
-<!DOCTYPE html>
-<html lang="ja" class="h-100">
+<!doctype html>
+<html lang="ja">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>saifu</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> //cssファイルの設定など
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            font-size: small;
+            height: 100%;
+            margin: 0;
+        }
+        
+        .wrapper {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header,
+        .footer {
+            background: silver;
+        }
+        
+        .content {
+            flex: 1;
+            overflow: auto;
+        }
+    </style>
+    <title>routedb</title>
 </head>
 
-<body style="font-size: small;">
-    <input type="hidden" id="hid_tehai" name="hid_tehai">
-    <input type="hidden" id="hid_status" name="hid_status" value="haipai">
-    <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
-    <div class="fixed-top">
-        <div class="card w-100">
-            <div class="card-header" style="padding:.3rem 1rem;">
-                <strong>
-                    <span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場：ドラ：<img style="width:14px;height:auto;" src="imgs/p2.png"><span id="oya">：親</span>：丸山まるこ
-                </strong>
-
-            </div>
-            <div class="card-body text-center">
-                <div id="kawa" class="w-100" style="text-align: left;">
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="card w-100">
+                <div class="card-header" style="padding:.3rem 1rem;">
+                    <strong>
+                        <span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場：ドラ：<img style="width:14px;height:auto;" src="imgs/p2.png"><span id="oya">：親</span>：丸山まるこ
+                    </strong>
+                </div>
+                <div class="card-body text-center">
+                    <div id="kawa" class="w-100" style="text-align: left;">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="tehai" style="margin-bottom:-15px;">
-        </div>
-        <div id="history" style="margin-bottom:-15px;">
-        </div>
-    </div>
-    <!-- ページコンテンツ -->
-
-    <!-- /container -->
-    <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">配牌確認</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                </div>
-                <!-- /.modal-header -->
-                <div class="modal-body" id="tehai_confirm_modal_body">
-                </div>
-                <!-- /.modal-body -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
-                    <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
-                </div>
-                <!-- /.modal-footer -->
+            <div id="tehai" style="margin-bottom:-15px;">
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-
-    <!-- フッタ -->
-    <div class="fixed-bottom">
-        <div class="card w-100">
-            <div class="text-center">
-                <div id="inputpai_m" class="w-100" style="text-align: center;">
+        <div class="content">
+            <div style="height:1000px;">
+                <input type="hidden" id="hid_tehai" name="hid_tehai">
+                <input type="hidden" id="hid_status" name="hid_status" value="haipai">
+                <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
+                <div id="history" style="margin-bottom:-15px;">
                 </div>
-                <div id="inputpai_p" class="w-100" style="text-align: center;">
+                <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">配牌確認</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body" id="tehai_confirm_modal_body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
+                                <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="inputpai_s" class="w-100" style="text-align: center;">
-                </div>
-                <div id="inputpai_z" class="w-100" style="text-align: center;">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="card w-100">
+                <div class="text-center">
+                    <div id="inputpai_m" class="w-100" style="text-align: center;">
+                    </div>
+                    <div id="inputpai_p" class="w-100" style="text-align: center;">
+                    </div>
+                    <div id="inputpai_s" class="w-100" style="text-align: center;">
+                    </div>
+                    <div id="inputpai_z" class="w-100" style="text-align: center;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,3 +212,5 @@
         }
     </script>
 </body>
+
+</html>
