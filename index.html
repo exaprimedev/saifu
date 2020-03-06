@@ -105,12 +105,16 @@
         var inputpai_w = 0;
         var tehai_w = 0;
         var tehai_w_h = 0;
+        var kawa_w = 0;
+        var kawa_w_h = 0;
         var arr_tehai = [];
         $(function() {
             w = $(window).width();
             inputpai_w = w * 0.099;
             tehai_w = w * 0.062;
             tehai_w_h = w * 0.085;
+            kawa_w = w * 0.041;
+            kawa_w_h = w * 0.085;
             console.log(w + ":" + inputpai_w);
             var inputpai_m_out = "";
             var inputpai_p_out = "";
@@ -174,7 +178,7 @@
                 $("#tehai").html(sortTehai(elm.id));
                 $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▲");
                 var markKawa = '<figure style="display:inline-block;"><figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption>'
-                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, tehai_w) + '</figure>');
+                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '</figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
                 $("#hid_status").val("tsumo");
             }
