@@ -170,8 +170,9 @@
                 } else {
                     arr_tehai.push(elm.id);
                     var jyunme = $("#hid_jyunme").val();
-                    tehai += '<figure style="display:inline-block;"><figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption>';
+                    tehai += '<figure style="display:inline-block;">';
                     tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                    tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption>'
                     tehai += '</figure>';
                     $("#hid_jyunme").val(Number(jyunme) + 1);
                     $("#tehai").html(tehai);
@@ -182,13 +183,13 @@
                 console.log($("#hid_tehai").val())
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
-                $("#history").html($("#tehai").html() + "<br>" + history);
+                $("#history").html('<div style="display:flex;margin-bottom:-15px;">'+$("#tehai").html() + "</div>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
                 console.log($("#hid_tehai").val())
                 $("#tehai").html(sortTehai(elm.id));
                 $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▲");
-                var markKawa = '<figure style="display:inline-block;"><figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption>'
-                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '</figure>');
+                var markKawa = '<figure style="display:inline-block;">'
+                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
                 $("#hid_status").val("tsumo");
             }
@@ -213,9 +214,10 @@
             arr_tehai.sort();
             var tehai = "";
             for (var idx in arr_tehai) {
-                tehai += '<figure style="display:inline-block;"><figcaption id="figc_' + $("#hid_jyunme").val() + "_" + arr_tehai[idx] + '" style="text-align:center;font-size:80%;">';
-                tehai += '</figcaption>';
-                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png"></figure>';
+                tehai += '<figure style="display:inline-block;">';
+                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png">';
+                tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + arr_tehai[idx] + '" style="text-align:center;font-size:80%;">'
+                tehai += '</figcaption></figure>';
             }
             return tehai.split(inputpai_w).join(tehai_w);
         }
