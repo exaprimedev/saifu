@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         html,
         body {
@@ -17,18 +16,18 @@
             height: 100%;
             margin: 0;
         }
-
+        
         .wrapper {
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-
+        
         .header,
         .footer {
             background: green;
         }
-
+        
         .content {
             flex: 1;
             overflow: auto;
@@ -74,10 +73,8 @@
                             <div class="modal-body" id="tehai_confirm_modal_body">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    onclick="modalOK()">OK</button>
-                                <button type="button" class="btn btn-secondaryprimary" id="modal_close"
-                                    onclick="modalClear()">クリア</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
+                                <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
                             </div>
                         </div>
                     </div>
@@ -85,6 +82,7 @@
             </div>
         </div>
         <div class="footer">
+
             <div class="card w-100">
                 <div class="text-center">
                     <div id="inputpai_m" class="w-100" style="text-align: center;">
@@ -100,14 +98,9 @@
         </div>
     </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     ‘
     <!-- Optional JavaScript -->
     <script>
@@ -118,7 +111,7 @@
         var kawa_w = 0;
         var kawa_w_h = 0;
         var arr_tehai = [];
-        $(function () {
+        $(function() {
             w = $(window).width();
             inputpai_w = w * 0.099;
             tehai_w = w * 0.062;
@@ -152,7 +145,6 @@
             var tehai = $("#tehai").html();
             var kawa = $("#kawa").html();
             var history = $("#history").html();
-            var markHistory = '<figure style="display:inline-block;"><figcaption style="text-align:center;font-size:80%;">▲</figcaption>';
             if ($("#hid_status").val() == "haipai") {
                 if (arr_tehai.length <= 13) {
                     arr_tehai.push(elm.id)
@@ -172,7 +164,7 @@
                     var jyunme = $("#hid_jyunme").val();
                     tehai += '<figure style="display:inline-block;">';
                     tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
-                    tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption>'
+                    tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;font-size:80%;color:white;"></figcaption>'
                     tehai += '</figure>';
                     $("#hid_jyunme").val(Number(jyunme) + 1);
                     $("#tehai").html(tehai);
@@ -183,11 +175,11 @@
                 console.log($("#hid_tehai").val())
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
-                $("#history").html('<div style="display:flex;margin-bottom:-15px;">'+$("#tehai").html() + "</div>" + history);
+                $("#history").html('<div style="display:flex;margin-bottom:-15px;">' + $("#tehai").html() + "</div>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
                 console.log($("#hid_tehai").val())
                 $("#tehai").html(sortTehai(elm.id));
-                $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▲");
+                $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▼");
                 var markKawa = '<figure style="display:inline-block;">'
                 $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
