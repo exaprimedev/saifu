@@ -79,10 +79,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal" tabindex="-1" role="dialog" id="naki_confirm_modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">配牌確認</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="naki_confirm_modal_body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
+                                <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer">
-
             <div class="card w-100">
                 <div class="text-center">
                     <div id="inputpai_m" class="w-100" style="text-align: center;">
@@ -308,7 +325,6 @@
             tehai_w_h = w * 0.085;
             kawa_w = w * 0.041;
             kawa_w_h = w * 0.085;
-            console.log(w + ":" + inputpai_w);
             var inputpai_m_out = "";
             var inputpai_p_out = "";
             var inputpai_s_out = "";
@@ -332,6 +348,7 @@
         });
 
         function selectPai(elm) {
+            var naki = $("#naki_confirm_modal_body").html();
             var tehai = $("#tehai").html();
             var kawa = $("#kawa").html();
             var history = $("#history").html();
@@ -347,8 +364,12 @@
                     $("#hid_tehai").val(arr_tehai.join());
                 }
             } else if ($("#hid_status").val() == "tsumo") {
-                if (checkNaki(elm.id)) {
-
+                var arr_naki = checkNaki(elm.id);
+                if (arr_naki.length > 0) {
+                    for (var idx in arr_naki) {
+                        console.log(arr_naki[idx]);
+                    }
+                    $("#naki_confirm_modal").modal();
                 } else {
                     arr_tehai.push(elm.id);
                     var jyunme = $("#hid_jyunme").val();
@@ -362,12 +383,10 @@
                     $("#hid_tehai").val(arr_tehai.join());
                 }
             } else {
-                console.log($("#hid_tehai").val())
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
                 $("#history").html('<div style="display:flex;margin-bottom:-15px;">' + $("#tehai").html() + "</div>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
-                console.log($("#hid_tehai").val())
                 $("#tehai").html(sortTehai(elm.id));
                 $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▼");
                 var markKawa = '<figure style="display:inline-block;">'
@@ -375,7 +394,6 @@
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
                 $("#hid_status").val("tsumo");
             }
-            console.log(arr_tehai);
         }
 
         function modalOK() {
@@ -409,19 +427,20 @@
             var kotsu = ($("#hid_tehai").val().match(new RegExp(pai, "g")) || []);
             if (kotsu.length >= 2) {
                 if (kotsu.length == 3) {
-                    result.push(kotsu.join() + ',"kan"');
-                    result.push(kotsu.join().slice(3) + ',"pon"');
+                    result.push(kotsu.join() + ",kan");
+                    result.push(kotsu.join().slice(3) + ",pon");
                 }
                 if (kotsu.length == 2) {
-                    result.push(kotsu.join() + ',"pon"');
+                    result.push(kotsu.join() + ",pon");
                 }
             }
-            if (kotsu.length == 1) {
-                //チー
-                return JSON.stringify(findTatsu(tatsuM, "pai", pai));
+            var arr_tatsu = findTatsu(tatsuM, "pai", pai);
+            for (var idx in arr_tatsu) {
+                if ($("#hid_tehai").val().indexOf(arr_tatsu[idx].tatsu) > -1) {
+                    result.push(arr_tatsu[idx].tatsu + ",chi");
+                }
             }
-            console.log(result);
-            return false;
+            return result;
         }
 
         function findTatsu(obj, key, value) {
