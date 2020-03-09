@@ -104,6 +104,196 @@
     ‘
     <!-- Optional JavaScript -->
     <script>
+        var tatsuM = [{
+            "pai": "m1",
+            "tatsu": "m2,m3"
+        }, {
+            "pai": "m2",
+            "tatsu": "m1,m3"
+        }, {
+            "pai": "m2",
+            "tatsu": "m3,m4"
+        }, {
+            "pai": "m3",
+            "tatsu": "m1,m2"
+        }, {
+            "pai": "m3",
+            "tatsu": "m2,m4"
+        }, {
+            "pai": "m3",
+            "tatsu": "m4,m5"
+        }, {
+            "pai": "m4",
+            "tatsu": "m2,m3"
+        }, {
+            "pai": "m4",
+            "tatsu": "m3,m5"
+        }, {
+            "pai": "m4",
+            "tatsu": "m5,m6"
+        }, {
+            "pai": "m5",
+            "tatsu": "m3,m4"
+        }, {
+            "pai": "m5",
+            "tatsu": "m4,m6"
+        }, {
+            "pai": "m5",
+            "tatsu": "m6,m7"
+        }, {
+            "pai": "m6",
+            "tatsu": "m4,m5"
+        }, {
+            "pai": "m6",
+            "tatsu": "m5,m7"
+        }, {
+            "pai": "m6",
+            "tatsu": "m7,m8"
+        }, {
+            "pai": "m7",
+            "tatsu": "m5,m6"
+        }, {
+            "pai": "m7",
+            "tatsu": "m6,m8"
+        }, {
+            "pai": "m7",
+            "tatsu": "m8,m9"
+        }, {
+            "pai": "m8",
+            "tatsu": "m6,m7"
+        }, {
+            "pai": "m8",
+            "tatsu": "m7,m9"
+        }, {
+            "pai": "m9",
+            "tatsu": "m7,m8"
+        }, {
+            "pai": "p1",
+            "tatsu": "p2,p3"
+        }, {
+            "pai": "p2",
+            "tatsu": "p1,p3"
+        }, {
+            "pai": "p2",
+            "tatsu": "p3,p4"
+        }, {
+            "pai": "p3",
+            "tatsu": "p1,p2"
+        }, {
+            "pai": "p3",
+            "tatsu": "p2,p4"
+        }, {
+            "pai": "p3",
+            "tatsu": "p4,p5"
+        }, {
+            "pai": "p4",
+            "tatsu": "p2,p3"
+        }, {
+            "pai": "p4",
+            "tatsu": "p3,p5"
+        }, {
+            "pai": "p4",
+            "tatsu": "p5,p6"
+        }, {
+            "pai": "p5",
+            "tatsu": "p3,p4"
+        }, {
+            "pai": "p5",
+            "tatsu": "p4,p6"
+        }, {
+            "pai": "p5",
+            "tatsu": "p6,p7"
+        }, {
+            "pai": "p6",
+            "tatsu": "p4,p5"
+        }, {
+            "pai": "p6",
+            "tatsu": "p5,p7"
+        }, {
+            "pai": "p6",
+            "tatsu": "p7,p8"
+        }, {
+            "pai": "p7",
+            "tatsu": "p5,p6"
+        }, {
+            "pai": "p7",
+            "tatsu": "p6,p8"
+        }, {
+            "pai": "p7",
+            "tatsu": "p8,p9"
+        }, {
+            "pai": "p8",
+            "tatsu": "p6,p7"
+        }, {
+            "pai": "p8",
+            "tatsu": "p7,p9"
+        }, {
+            "pai": "p9",
+            "tatsu": "p7,p8"
+        }, {
+            "pai": "s1",
+            "tatsu": "s2,s3"
+        }, {
+            "pai": "s2",
+            "tatsu": "s1,s3"
+        }, {
+            "pai": "s2",
+            "tatsu": "s3,s4"
+        }, {
+            "pai": "s3",
+            "tatsu": "s1,s2"
+        }, {
+            "pai": "s3",
+            "tatsu": "s2,s4"
+        }, {
+            "pai": "s3",
+            "tatsu": "s4,s5"
+        }, {
+            "pai": "s4",
+            "tatsu": "s2,s3"
+        }, {
+            "pai": "s4",
+            "tatsu": "s3,s5"
+        }, {
+            "pai": "s4",
+            "tatsu": "s5,s6"
+        }, {
+            "pai": "s5",
+            "tatsu": "s3,s4"
+        }, {
+            "pai": "s5",
+            "tatsu": "s4,s6"
+        }, {
+            "pai": "s5",
+            "tatsu": "s6,s7"
+        }, {
+            "pai": "s6",
+            "tatsu": "s4,s5"
+        }, {
+            "pai": "s6",
+            "tatsu": "s5,s7"
+        }, {
+            "pai": "s6",
+            "tatsu": "s7,s8"
+        }, {
+            "pai": "s7",
+            "tatsu": "s5,s6"
+        }, {
+            "pai": "s7",
+            "tatsu": "s6,s8"
+        }, {
+            "pai": "s7",
+            "tatsu": "s8,s9"
+        }, {
+            "pai": "s8",
+            "tatsu": "s6,s7"
+        }, {
+            "pai": "s8",
+            "tatsu": "s7,s9"
+        }, {
+            "pai": "s9",
+            "tatsu": "s7,s8"
+        }];
         var w = 0;
         var inputpai_w = 0;
         var tehai_w = 0;
@@ -215,8 +405,30 @@
         }
 
         function checkNaki(pai) {
-            console.log(pai);
+            var result = [];
+            var kotsu = ($("#hid_tehai").val().match(new RegExp(pai, "g")) || []);
+            if (kotsu.length >= 2) {
+                if (kotsu.length == 3) {
+                    result.push(kotsu.join() + ',"kan"');
+                    result.push(kotsu.join().slice(3) + ',"pon"');
+                }
+                if (kotsu.length == 2) {
+                    result.push(kotsu.join() + ',"pon"');
+                }
+            }
+            if (kotsu.length == 1) {
+                //チー
+                return JSON.stringify(findTatsu(tatsuM, "pai", pai));
+            }
+            console.log(result);
             return false;
+        }
+
+        function findTatsu(obj, key, value) {
+            var result = $.grep(obj, function(e) {
+                return e[key] == value;
+            });
+            return result;
         }
     </script>
 </body>
