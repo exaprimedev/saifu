@@ -33,7 +33,7 @@
             overflow: auto;
         }
     </style>
-    <title>routedb</title>
+    <title>saifu</title>
 </head>
 
 <body>
@@ -83,7 +83,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">配牌確認</h5>
+                                <h5 class="modal-title">副露確認</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -367,8 +367,17 @@
                 var arr_naki = checkNaki(elm.id);
                 if (arr_naki.length > 0) {
                     for (var idx in arr_naki) {
+                        var arr_naki_row = arr_naki[idx].split(',');
+                        naki += '<div style="display:flex;margin-bottom:-15px;">'
+                        for (var idx in arr_naki_row) {
+                            naki += '<figure style="display:inline-block;">';
+                            naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                            naki += '</figure>';
+                        }
+                        naki += '<div>'
                         console.log(arr_naki[idx]);
                     }
+                    $("#naki_confirm_modal_body").html(naki);
                     $("#naki_confirm_modal").modal();
                 } else {
                     arr_tehai.push(elm.id);
