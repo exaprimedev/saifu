@@ -62,7 +62,7 @@
                 <div id="history" style="margin-bottom:-15px;">
                 </div>
                 <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">配牌確認</h5>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="modal" tabindex="-1" role="dialog" id="naki_confirm_modal">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">副露確認</h5>
@@ -348,7 +348,7 @@
         });
 
         function selectPai(elm) {
-            var naki = $("#naki_confirm_modal_body").html();
+            var naki = "";
             var tehai = $("#tehai").html();
             var kawa = $("#kawa").html();
             var history = $("#history").html();
@@ -368,13 +368,23 @@
                 if (arr_naki.length > 0) {
                     for (var idx in arr_naki) {
                         var arr_naki_row = arr_naki[idx].split(',');
-                        naki += '<div style="display:flex;margin-bottom:-15px;">'
+                        naki += '<div>'
+                        naki += '<div style="display:flex;margin-bottom:-15px;"><a href="#" onclick="furoPai(this)">'
                         for (var idx in arr_naki_row) {
                             naki += '<figure style="display:inline-block;">';
-                            naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                            if (idx == arr_naki_row.length - 1) {
+                                naki += '<figcaption style="text-align:center;font-size:40%;">' + arr_naki_row[idx] + '</figcaption>'
+                            } else {
+                                if (arr_naki_row[idx].indexOf("_h") !== -1) {
+                                    naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w_h + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                                } else {
+                                    naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                                }
+                            }
                             naki += '</figure>';
                         }
-                        naki += '<div>'
+                        naki += '</a></div>'
+                        naki += '</div>'
                         console.log(arr_naki[idx]);
                     }
                     $("#naki_confirm_modal_body").html(naki);
@@ -405,6 +415,10 @@
             }
         }
 
+        function furoPai(elm) {
+            console.log(elm.innerHTML);
+        }
+
         function modalOK() {
             $("#tehai_confirm_modal").modal('hide');
             $("#tehai").html(sortTehai());
@@ -432,21 +446,29 @@
         }
 
         function checkNaki(pai) {
+            $("#naki_confirm_modal_body").html("");
             var result = [];
             var kotsu = ($("#hid_tehai").val().match(new RegExp(pai, "g")) || []);
             if (kotsu.length >= 2) {
                 if (kotsu.length == 3) {
-                    result.push(kotsu.join() + ",kan");
-                    result.push(kotsu.join().slice(3) + ",pon");
+                    result.push(kotsu.join() + "," + pai + ",アンカン");
+                    result.push(kotsu[0] + "_h," + kotsu[1] + "," + kotsu[2] + "," + pai + ",ミンカン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "_h," + kotsu[2] + "," + pai + ",ミンカン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "," + kotsu[2] + "," + pai + "_h,ミンカン");
+                    result.push(kotsu[0] + "_h," + kotsu[1] + "," + kotsu[2] + ",ポン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "_h," + kotsu[2] + ",ポン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "," + kotsu[2] + "_h,ポン");
                 }
                 if (kotsu.length == 2) {
-                    result.push(kotsu.join() + ",pon");
+                    result.push(kotsu[0] + "_h," + kotsu[1] + "," + pai + ",ポン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "_h," + pai + ",ポン");
+                    result.push(kotsu[0] + "," + kotsu[1] + "," + pai + "_h,ポン");
                 }
             }
             var arr_tatsu = findTatsu(tatsuM, "pai", pai);
             for (var idx in arr_tatsu) {
                 if ($("#hid_tehai").val().indexOf(arr_tatsu[idx].tatsu) > -1) {
-                    result.push(arr_tatsu[idx].tatsu + ",chi");
+                    result.push(pai + "_h," + arr_tatsu[idx].tatsu + ",チー");
                 }
             }
             return result;
