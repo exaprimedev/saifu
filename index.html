@@ -57,6 +57,8 @@
         <div class="content">
             <div style="height:1000px;">
                 <input type="hidden" id="hid_tehai" name="hid_tehai">
+                <input type="hidden" id="hid_furo" name="hid_furo">
+                <input type="hidden" id="hid_tatsu" name="hid_tatsu">
                 <input type="hidden" id="hid_status" name="hid_status" value="haipai">
                 <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
                 <div id="history" style="margin-bottom:-15px;">
@@ -368,12 +370,12 @@
                     for (var idx in arr_naki) {
                         var arr_naki_row = arr_naki[idx].split(',');
                         naki += '<div>'
-                        naki += '<div style="display:flex;margin-bottom:-15px;"><a href="#" onclick="furoPai(this)">'
+                        naki += '<div style="display:flex;margin-bottom:-15px;"><a href="#" onclick="furoPai(this,\'' + arr_naki[idx] + '\')">'
                         for (var idx in arr_naki_row) {
-                            naki += '<figure style="display:inline-block;">';
                             if (idx == 0) {
-                                naki += '<figcaption style="text-align:center;font-size:60%;"><strong>' + arr_naki_row[arr_naki_row.length - 1] + '</strong></figcaption>';
+                                naki += arr_naki_row[arr_naki_row.length - 1];
                             }
+                            naki += '<figure style="display:inline-block;">';
                             if (idx != arr_naki_row.length - 1) {
                                 if (arr_naki_row[idx].indexOf("_h") !== -1) {
                                     naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w_h + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
@@ -415,8 +417,10 @@
             }
         }
 
-        function furoPai(elm) {
+        function furoPai(elm, value) {
+            $("#hid_furo").val(value.split(",").splice(0, value.split(",").length - 1).join());
             console.log(elm.innerHTML);
+            console.log(value);
         }
 
         function modalOK() {
