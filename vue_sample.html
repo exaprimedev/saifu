@@ -1,17 +1,49 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
 <body>
     <div id="app">
-        <h1>{{ message }}</h1>
+        <v-app>
+            <v-app-bar app dense fixed>
+                <v-toolbar-title>Title</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items class="hidden-sm-and-down">
+                    <v-btn text>Link One</v-btn>
+                    <v-btn text>Link Two</v-btn>
+                    <v-btn text>Link Three</v-btn>
+                </v-toolbar-items>
+            </v-app-bar>
+            <v-content>
+                <v-container fluid>
+                    <h1 v-for="n in 20" :key="n">{{n}}</h1>
+                </v-container>
+            </v-content>
+            <v-bottom-navigation fixed dark grow>
+                <v-btn>
+                    <span>Home</span>
+                    <v-icon>fas fa-home</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>Edit</span>
+                    <v-icon>fas fa-edit</v-icon>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-app>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script>
-        var app = new Vue({
+        new Vue({
             el: '#app',
-            data: {
-                message: 'Hello Vue.js!'
-            }
+            vuetify: new Vuetify(),
         })
     </script>
 </body>

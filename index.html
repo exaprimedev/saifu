@@ -74,7 +74,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
-                                <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
+                                <button type="button" class="btn btn-secondary" id="modal_close" onclick="modalClear()">クリア</button>
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,7 @@
                             <div class="modal-body" id="naki_confirm_modal_body">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
-                                <button type="button" class="btn btn-secondaryprimary" id="modal_close" onclick="modalClear()">クリア</button>
+                                <button type="button" class="btn btn-secondary" id="naki_confirm_modal_cancel" onclick="furoCancel()">キャンセル</button>
                             </div>
                         </div>
                     </div>
@@ -372,9 +371,10 @@
                         naki += '<div style="display:flex;margin-bottom:-15px;"><a href="#" onclick="furoPai(this)">'
                         for (var idx in arr_naki_row) {
                             naki += '<figure style="display:inline-block;">';
-                            if (idx == arr_naki_row.length - 1) {
-                                naki += '<figcaption style="text-align:center;font-size:40%;">' + arr_naki_row[idx] + '</figcaption>'
-                            } else {
+                            if (idx == 0) {
+                                naki += '<figcaption style="text-align:center;font-size:60%;"><strong>' + arr_naki_row[arr_naki_row.length - 1] + '</strong></figcaption>';
+                            }
+                            if (idx != arr_naki_row.length - 1) {
                                 if (arr_naki_row[idx].indexOf("_h") !== -1) {
                                     naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w_h + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
                                 } else {
@@ -432,6 +432,10 @@
             $("#tehai_confirm_modal").modal('hide');
         }
 
+        function furoCancel() {
+            $("#naki_confirm_modal_cancel").modal('hide');
+        }
+
         function sortTehai(pai) {
             arr_tehai = $("#hid_tehai").val().split(',');
             arr_tehai.sort();
@@ -467,7 +471,8 @@
             }
             var arr_tatsu = findTatsu(tatsuM, "pai", pai);
             for (var idx in arr_tatsu) {
-                if ($("#hid_tehai").val().indexOf(arr_tatsu[idx].tatsu) > -1) {
+                var arr_tatsu_row = arr_tatsu[idx].tatsu.split(',');
+                if ($("#hid_tehai").val().indexOf(arr_tatsu_row[0]) > -1 && $("#hid_tehai").val().indexOf(arr_tatsu_row[1]) > -1) {
                     result.push(pai + "_h," + arr_tatsu[idx].tatsu + ",チー");
                 }
             }
