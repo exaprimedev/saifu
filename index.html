@@ -12,7 +12,6 @@
         html,
         body {
             font-size: small;
-            background-color: green;
             height: 100%;
             margin: 0;
         }
@@ -24,10 +23,6 @@
         }
         
         .header,
-        .footer {
-            background: green;
-        }
-        
         .content {
             flex: 1;
             overflow: auto;
@@ -113,9 +108,10 @@
                     </div>
                 </div>
                 <div class="btn-group d-flex" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default w-100"><strong>副露</strong></button>
-                    <button type="button" class="btn btn-default w-100"><strong>和了</strong></button>
-                    <button type="button" class="btn btn-default w-100" data-toggle="collapse" data-target="#keyboard" aria-expanded="true" aria-controls="collapseKeyboard"><strong>キーボード</strong></button>
+                    <button type="button" class="btn btn-outline-primary w-100"><strong>立直</strong></button>
+                    <button type="button" class="btn btn-outline-danger w-100"><strong>副露</strong></button>
+                    <button type="button" class="btn btn-outline-success w-100"><strong>和了/放銃</strong></button>
+                    <button type="button" class="btn btn-outline-secondary w-100" data-toggle="collapse" data-target="#keyboard" aria-expanded="true" aria-controls="collapseKeyboard"><strong>キーボード</strong></button>
                 </div>
             </div>
         </div>
@@ -399,9 +395,8 @@
                 } else {
                     arr_tehai.push(elm.id);
                     var jyunme = $("#hid_jyunme").val();
-                    tehai += '<figure style="display:inline-block;">';
+                    tehai += '<figure id="fig_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="display:inline-block;">';
                     tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
-                    tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="text-align:center;font-size:80%;color:white;"></figcaption>'
                     tehai += '</figure>';
                     $("#hid_jyunme").val(Number(jyunme) + 1);
                     $("#tehai").html(tehai);
@@ -414,7 +409,10 @@
                 $("#history").html('<div style="display:flex;margin-bottom:-15px;">' + $("#tehai").html() + "</div>" + history);
                 $("#hid_tehai").val(arr_tehai.join());
                 $("#tehai").html(sortTehai(elm.id));
-                $("#figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("▼");
+                $("#fig_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).css({
+                    'display': 'inline-block',
+                    'opacity': '0.5'
+                });
                 var markKawa = '<figure style="display:inline-block;">'
                 $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
