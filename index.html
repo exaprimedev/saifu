@@ -38,10 +38,11 @@
                 <div class="card-header" style="padding:.3rem 1rem;">
                     <strong>
                         <span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場：ドラ：<img
-                            style="width:14px;height:auto;" src="imgs/p2.png"><span id="oya">：親</span>：丸山まるこ
+                            style="width:14px;height:auto;" src="imgs/p2.png">
                     </strong>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-left" style="transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);">
+                    <span id="oya">東</span>家：丸山まるこ
                     <div id="kawa" class="w-100" style="text-align: left;">
                     </div>
                 </div>
@@ -98,13 +99,13 @@
         <div class="footer">
             <div class="card w-100">
                 <div class="collapse" id="keyboard">
-                    <div id="inputpai_m" class="w-100" style="text-align: center;">
+                    <div id="keyboard_m" class="w-100" style="text-align: center;">
                     </div>
-                    <div id="inputpai_p" class="w-100" style="text-align: center;">
+                    <div id="keyboard_p" class="w-100" style="text-align: center;">
                     </div>
-                    <div id="inputpai_s" class="w-100" style="text-align: center;">
+                    <div id="keyboard_s" class="w-100" style="text-align: center;">
                     </div>
-                    <div id="inputpai_z" class="w-100" style="text-align: center;">
+                    <div id="keyboard_z" class="w-100" style="text-align: center;">
                     </div>
                 </div>
                 <div class="btn-group d-flex" role="group" aria-label="...">
@@ -123,7 +124,7 @@
     ‘
     <!-- Optional JavaScript -->
     <script>
-        var tatsuM = [{
+        const tatsuM = [{
             "pai": "m1",
             "tatsu": "m2,m3"
         }, {
@@ -313,8 +314,14 @@
             "pai": "s9",
             "tatsu": "s7,s8"
         }];
+        const tagKeyboard1 = '<div style="float:left;" data-toggle="tooltip" title="';
+        const tagKeyboard2 = '"><a href="#" id="';
+        const tagKeyboard3 = '" onclick="selectPai(this)"><img id="img_';
+        const tagStyle1 = '" style="width:';
+        const tagStyle2 = 'px;height:auto;" src="imgs/';
+        const tagKeyboard4 = '.png"></a></div>';
         var w = 0;
-        var inputpai_w = 0;
+        var keyboard_w = 0;
         var tehai_w = 0;
         var tehai_w_h = 0;
         var kawa_w = 0;
@@ -322,30 +329,30 @@
         var arr_tehai = [];
         $(function() {
             w = $(window).width();
-            inputpai_w = w * 0.099;
+            keyboard_w = w * 0.099;
             tehai_w = w * 0.062;
             tehai_w_h = w * 0.085;
             kawa_w = w * 0.041;
             kawa_w_h = w * 0.085;
-            var inputpai_m_out = "";
-            var inputpai_p_out = "";
-            var inputpai_s_out = "";
-            var inputpai_z_out = "";
+            var keyboard_m_out = "";
+            var keyboard_p_out = "";
+            var keyboard_s_out = "";
+            var keyboard_z_out = "";
             for (var idx = 1; idx < 10; idx++) {
-                inputpai_m_out += '<div style="float:left;" data-toggle="tooltip" title="m' + idx + '"><a href="#" id="m' + idx + '" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m' + idx + '.png"></a></div>';
-                inputpai_p_out += '<div style="float:left;" data-toggle="tooltip" title="p' + idx + '"><a href="#" id="p' + idx + '" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p' + idx + '.png"></a></div>';
-                inputpai_s_out += '<div style="float:left;" data-toggle="tooltip" title="s' + idx + '"><a href="#" id="s' + idx + '" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s' + idx + '.png"></a></div>';
+                keyboard_m_out += tagKeyboard1 + 'm' + idx + tagKeyboard2 + 'm' + idx + tagKeyboard3 + 'm' + idx + tagStyle1 + keyboard_w + tagStyle2 + 'm' + idx + tagKeyboard4;
+                keyboard_p_out += tagKeyboard1 + 'p' + idx + tagKeyboard2 + 'p' + idx + tagKeyboard3 + 'p' + idx + tagStyle1 + keyboard_w + tagStyle2 + 'p' + idx + tagKeyboard4;
+                keyboard_s_out += tagKeyboard1 + 's' + idx + tagKeyboard2 + 's' + idx + tagKeyboard3 + 's' + idx + tagStyle1 + keyboard_w + tagStyle2 + 's' + idx + tagKeyboard4;
             }
-            inputpai_m_out += '<div style="float:left;" data-toggle="tooltip" title="m5r"><a href="#" id="m5r" onclick="selectPai(this)"><img id="img_m' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/m5r.png"></a></div>';
-            inputpai_p_out += '<div style="float:left;" data-toggle="tooltip" title="p5r"><a href="#" id="p5r" onclick="selectPai(this)"><img id="img_p' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/p5r.png"></a></div>';
-            inputpai_s_out += '<div style="float:left;" data-toggle="tooltip" title="s5r"><a href="#" id="s5r" onclick="selectPai(this)"><img id="img_s' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/s5r.png"></a></div>';
+            keyboard_m_out += tagKeyboard1 + 'm5r' + tagKeyboard2 + 'm5r' + tagKeyboard3 + 'm' + idx + tagStyle1 + keyboard_w + tagStyle2 + 'm5r' + tagKeyboard4;
+            keyboard_p_out += tagKeyboard1 + 'p5r' + tagKeyboard2 + 'p5r' + tagKeyboard3 + 'p' + idx + tagStyle1 + keyboard_w + tagStyle2 + 'p5r' + tagKeyboard4;
+            keyboard_s_out += tagKeyboard1 + 's5r' + tagKeyboard2 + 's5r' + tagKeyboard3 + 's' + idx + tagStyle1 + keyboard_w + tagStyle2 + 's5r' + tagKeyboard4;
             for (var idx = 1; idx < 8; idx++) {
-                inputpai_z_out += '<div style="float:left;" data-toggle="tooltip" title="z' + idx + '"><a href="#" id="z' + idx + '" onclick="selectPai(this)"><img id="img_z' + idx + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/z' + idx + '.png"></a></div>';
+                keyboard_z_out += tagKeyboard1 + 'z' + idx + tagKeyboard2 + 'z' + idx + tagKeyboard3 + 'z' + idx + tagStyle1 + keyboard_w + tagStyle2 + 'z' + idx + tagKeyboard4;
             }
-            $("#inputpai_m").html(inputpai_m_out);
-            $("#inputpai_p").html(inputpai_p_out);
-            $("#inputpai_s").html(inputpai_s_out);
-            $("#inputpai_z").html(inputpai_z_out);
+            $("#keyboard_m").html(keyboard_m_out);
+            $("#keyboard_p").html(keyboard_p_out);
+            $("#keyboard_s").html(keyboard_s_out);
+            $("#keyboard_z").html(keyboard_z_out);
             $('[data-toggle="tooltip"]').tooltip();
         });
 
@@ -357,7 +364,7 @@
             if ($("#hid_status").val() == "haipai") {
                 if (arr_tehai.length <= 13) {
                     arr_tehai.push(elm.id)
-                    tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
+                    tehai += elm.innerHTML.replace(keyboard_w, tehai_w);
                     $("#tehai").html(tehai);
                     if (arr_tehai.length == 13) {
                         $("#tehai_confirm_modal_body").html($("#tehai").html());
@@ -365,7 +372,7 @@
                     }
                     $("#hid_tehai").val(arr_tehai.join());
                 }
-            } else if ($("#hid_status").val() == "tsumo") {
+            } else if ($("#hid_status").val() == "furo") {
                 var arr_naki = checkNaki(elm.id);
                 if (arr_naki.length > 0) {
                     for (var idx in arr_naki) {
@@ -379,9 +386,9 @@
                             naki += '<figure style="display:inline-block;">';
                             if (idx != arr_naki_row.length - 1) {
                                 if (arr_naki_row[idx].indexOf("_h") !== -1) {
-                                    naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w_h + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                                    naki += '<img id="img_' + arr_naki_row[idx] + tagStyle1 + tehai_w_h + tagStyle2 + arr_naki_row[idx] + '.png">'
                                 } else {
-                                    naki += '<img id="img_' + arr_naki_row[idx] + '" style="width:' + tehai_w + 'px;height:auto;" src="imgs/' + arr_naki_row[idx] + '.png">'
+                                    naki += '<img id="img_' + arr_naki_row[idx] + tagStyle1 + tehai_w + tagStyle2 + arr_naki_row[idx] + '.png">'
                                 }
                             }
                             naki += '</figure>';
@@ -392,17 +399,17 @@
                     }
                     $("#naki_confirm_modal_body").html(naki);
                     $("#naki_confirm_modal").modal();
-                } else {
-                    arr_tehai.push(elm.id);
-                    var jyunme = $("#hid_jyunme").val();
-                    tehai += '<figure id="fig_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="display:inline-block;">';
-                    tehai += elm.innerHTML.replace(inputpai_w, tehai_w);
-                    tehai += '</figure>';
-                    $("#hid_jyunme").val(Number(jyunme) + 1);
-                    $("#tehai").html(tehai);
-                    $("#hid_status").val("kiri");
-                    $("#hid_tehai").val(arr_tehai.join());
                 }
+            } else if ($("#hid_status").val() == "tsumo") {
+                arr_tehai.push(elm.id);
+                var jyunme = $("#hid_jyunme").val();
+                tehai += '<figure id="fig_' + $("#hid_jyunme").val() + "_" + elm.id + '" style="display:inline-block;">';
+                tehai += elm.innerHTML.replace(keyboard_w, tehai_w);
+                tehai += '</figure>';
+                $("#hid_jyunme").val(Number(jyunme) + 1);
+                $("#tehai").html(tehai);
+                changeStatus("kiri");
+                $("#hid_tehai").val(arr_tehai.join());
             } else {
                 arr_tehai = $("#hid_tehai").val().split(',');
                 arr_tehai.splice($.inArray(elm.id, arr_tehai), 1);
@@ -411,12 +418,12 @@
                 $("#tehai").html(sortTehai(elm.id));
                 $("#fig_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).css({
                     'display': 'inline-block',
-                    'opacity': '0.5'
+                    'filter': 'brightness(60%)'
                 });
                 var markKawa = '<figure style="display:inline-block;">'
-                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(inputpai_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
+                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
-                $("#hid_status").val("tsumo");
+                changeStatus("tsumo");
             }
         }
 
@@ -449,11 +456,11 @@
             var tehai = "";
             for (var idx in arr_tehai) {
                 tehai += '<figure style="display:inline-block;">';
-                tehai += '<img id="img_' + arr_tehai[idx] + '" style="width:' + inputpai_w + 'px;height:auto;" src="imgs/' + arr_tehai[idx] + '.png">';
+                tehai += '<img id="img_' + arr_tehai[idx] + tagStyle1 + keyboard_w + tagStyle2 + arr_tehai[idx] + '.png">';
                 tehai += '<figcaption id="figc_' + $("#hid_jyunme").val() + "_" + arr_tehai[idx] + '" style="text-align:center;font-size:80%;">'
                 tehai += '</figcaption></figure>';
             }
-            return tehai.split(inputpai_w).join(tehai_w);
+            return tehai.split(keyboard_w).join(tehai_w);
         }
 
         function checkNaki(pai) {
@@ -491,6 +498,10 @@
                 return e[key] == value;
             });
             return result;
+        }
+
+        function changeStatus(status) {
+            $("#hid_status").val(status);
         }
     </script>
 </body>
