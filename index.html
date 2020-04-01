@@ -9,114 +9,139 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-        html,
-        body {
-            font-size: small;
-            height: 100%;
-            margin: 0;
-        }
-        
-        .wrapper {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .header,
-        .content {
-            flex: 1;
-            overflow: auto;
-        }
+
     </style>
     <title>saifu</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="header">
-            <div class="card w-100">
-                <div class="card-header" style="padding:.3rem 1rem;">
-                    <strong>
-                        <span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場：ドラ：<img
-                            style="width:14px;height:auto;" src="imgs/p2.png">
+    <header class="sticky-top">
+        <div class="card w-100">
+            <div class="card-header" style="padding:.3rem 1rem;">
+                <strong>
+                        <span id="title">2020/03/29 Mリーグ1回戦</span>
                     </strong>
-                </div>
-                <div class="card-body text-left" style="transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);">
-                    <span id="oya">東</span>家：丸山まるこ
-                    <div id="kawa" class="w-100" style="text-align: left;">
-                    </div>
-                </div>
             </div>
-            <div id="tehai" style="margin-bottom:-15px;">
+            <div class="card-body text-left" style="padding: 0px;">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td style="padding: 0px;">
+                                <div class="w-100" style="text-align: left;transform: rotateX(0deg) rotateY(0deg) rotateZ(180deg);">
+                                    <span id="kaze">西</span>家：白鳥翔<br>
+                                    <div id="kawa3">
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0px;">
+                                <div class="w-100" style="text-align: left;transform: rotateX(0deg) rotateY(0deg) rotateZ(90deg);">
+                                    <span id="kaze">北</span>家：小林剛<br>
+                                    <div id="kawa4">
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 0px;text-align: center;"><span id="bakaze">東</span><span id="kyoku">1</span>局：<span id="honba">0</span>本場<br>ドラ：<img style="width:14px;height:auto;" src="imgs/p2.png"></td>
+                            <td style="padding: 0px;">
+                                <div class="w-100" style="text-align: left;transform: rotateX(0deg) rotateY(0deg) rotateZ(-90deg);">
+                                    <span id="kaze">南</span>家：佐々木寿人<br>
+                                    <div id="kawa2">
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="padding: 0px;">
+                                <div class="w-100" style="text-align: left;transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);">
+                                    <span id="kaze">東</span>家：萩原聖人<br>
+                                    <div id="kawa1">
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="content">
-            <div style="height:1000px;">
-                <input type="hidden" id="hid_tehai" name="hid_tehai">
-                <input type="hidden" id="hid_furo" name="hid_furo">
-                <input type="hidden" id="hid_tatsu" name="hid_tatsu">
-                <input type="hidden" id="hid_status" name="hid_status" value="haipai">
-                <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
-                <div id="history" style="margin-bottom:-15px;">
-                </div>
-                <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">配牌確認</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+        <div id="tehai" style="margin-bottom:-15px;">
+        </div>
+    </header>
+    <main class="mb-5">
+        <div style="height:1000px;">
+            <input type="hidden" id="hid_tehai" name="hid_tehai">
+            <input type="hidden" id="hid_furo" name="hid_furo">
+            <input type="hidden" id="hid_tatsu" name="hid_tatsu">
+            <input type="hidden" id="hid_status" name="hid_status" value="haipai">
+            <input type="hidden" id="hid_jyunme" name="hid_jyunme" value="1">
+            <div id="history" style="margin-bottom:-15px;">
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="tehai_confirm_modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">配牌確認</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                     <span aria-hidden="true">×</span>
                                 </button>
-                            </div>
-                            <div class="modal-body" id="tehai_confirm_modal_body">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
-                                <button type="button" class="btn btn-secondary" id="modal_close" onclick="modalClear()">クリア</button>
-                            </div>
+                        </div>
+                        <div class="modal-body" id="tehai_confirm_modal_body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modalOK()">OK</button>
+                            <button type="button" class="btn btn-secondary" id="modal_close" onclick="modalClear()">クリア</button>
                         </div>
                     </div>
                 </div>
-                <div class="modal" tabindex="-1" role="dialog" id="naki_confirm_modal">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">副露確認</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="naki_confirm_modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">副露確認</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                     <span aria-hidden="true">×</span>
                                 </button>
-                            </div>
-                            <div class="modal-body" id="naki_confirm_modal_body">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" id="naki_confirm_modal_cancel" onclick="furoCancel()">キャンセル</button>
-                            </div>
+                        </div>
+                        <div class="modal-body" id="naki_confirm_modal_body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="naki_confirm_modal_cancel" onclick="furoCancel()">キャンセル</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="card w-100">
-                <div class="collapse" id="keyboard">
-                    <div id="keyboard_m" class="w-100" style="text-align: center;">
-                    </div>
-                    <div id="keyboard_p" class="w-100" style="text-align: center;">
-                    </div>
-                    <div id="keyboard_s" class="w-100" style="text-align: center;">
-                    </div>
-                    <div id="keyboard_z" class="w-100" style="text-align: center;">
-                    </div>
+    </main>
+    <footer class="fixed-bottom">
+        <div class="card w-100">
+            <div class="collapse" id="keyboard">
+                <div id="keyboard_m" class="w-100" style="text-align: center;">
                 </div>
-                <div class="btn-group d-flex" role="group" aria-label="...">
-                    <button type="button" class="btn btn-outline-primary w-100"><strong>立直</strong></button>
-                    <button type="button" class="btn btn-outline-danger w-100"><strong>副露</strong></button>
-                    <button type="button" class="btn btn-outline-success w-100"><strong>和了/放銃</strong></button>
-                    <button type="button" class="btn btn-outline-secondary w-100" data-toggle="collapse" data-target="#keyboard" aria-expanded="true" aria-controls="collapseKeyboard"><strong>キーボード</strong></button>
+                <div id="keyboard_p" class="w-100" style="text-align: center;">
+                </div>
+                <div id="keyboard_s" class="w-100" style="text-align: center;">
+                </div>
+                <div id="keyboard_z" class="w-100" style="text-align: center;">
                 </div>
             </div>
+            <div class="btn-group d-flex" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-primary w-100"><strong>立直</strong></button>
+                <button type="button" class="btn btn-outline-danger w-100"><strong>副露</strong></button>
+                <button type="button" class="btn btn-outline-success w-100"><strong>和了/放銃</strong></button>
+                <button type="button" class="btn btn-outline-secondary w-100" data-toggle="collapse" data-target="#keyboard" aria-expanded="true" aria-controls="collapseKeyboard"><strong>キーボード</strong></button>
+            </div>
         </div>
-    </div>
+    </footer>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -359,7 +384,7 @@
         function selectPai(elm) {
             var naki = "";
             var tehai = $("#tehai").html();
-            var kawa = $("#kawa").html();
+            var kawa1 = $("#kawa1").html();
             var history = $("#history").html();
             if ($("#hid_status").val() == "haipai") {
                 if (arr_tehai.length <= 13) {
@@ -420,8 +445,11 @@
                     'display': 'inline-block',
                     'filter': 'brightness(60%)'
                 });
-                var markKawa = '<figure style="display:inline-block;">'
-                $("#kawa").html(kawa + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
+                var markKawa = '<figure style="display:inline-block;margin:0 0 .1rem">'
+                $("#kawa1").html(kawa1 + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
+                $("#kawa2").html(kawa1 + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
+                $("#kawa3").html(kawa1 + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
+                $("#kawa4").html(kawa1 + markKawa + elm.innerHTML.replace(keyboard_w, kawa_w) + '<figcaption id="k_figc_' + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id + '" style="text-align:center;font-size:80%;"></figcaption></figure>');
                 $("#k_figc_" + String(Number($("#hid_jyunme").val()) - 1) + "_" + elm.id).html("");
                 changeStatus("tsumo");
             }
